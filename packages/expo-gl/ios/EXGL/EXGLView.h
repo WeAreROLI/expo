@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)maybeStopARSession;
 
 @property (nonatomic, copy, nullable) EXDirectEventBlock onSurfaceCreate;
+@property (nonatomic, copy, nullable) EXDirectEventBlock onFrame;
+
 @property (nonatomic, assign) NSNumber *msaaSamples;
 
 // "protected"

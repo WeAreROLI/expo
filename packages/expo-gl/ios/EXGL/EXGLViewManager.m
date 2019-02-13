@@ -26,7 +26,7 @@ EX_EXPORT_MODULE(ExponentGLViewManager);
 
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"onSurfaceCreate"];
+  return @[@"onSurfaceCreate", @"onFrame"];
 }
 
 EX_VIEW_PROPERTY(msaaSamples, NSNumber *, EXGLView)

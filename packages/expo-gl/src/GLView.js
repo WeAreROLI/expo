@@ -17,6 +17,11 @@ type Props = {
   onContextCreate?: (gl: *) => void,
 
   /**
+   * Optional onFrame callback, to allow drawing to be synchronised to the native display loop
+   */
+  onFrame?: () => void,
+
+  /**
    * [iOS only] Number of samples for Apple's built-in multisampling.
    */
   msaaSamples: number,
@@ -35,6 +40,7 @@ const { ExponentGLObjectManager, ExponentGLViewManager } = NativeModulesProxy;
 export default class GLView extends React.Component<Props> {
   static propTypes = {
     onContextCreate: PropTypes.func,
+    onFrame: PropTypes.func,
     msaaSamples: PropTypes.number,
     nativeRef_EXPERIMENTAL: PropTypes.func,
     ...ViewPropTypes,
@@ -68,6 +74,7 @@ export default class GLView extends React.Component<Props> {
   render() {
     const {
       onContextCreate, // eslint-disable-line no-unused-vars
+      onFrame, // eslint-disable-line no-unused-vars
       msaaSamples,
       ...viewProps
     } = this.props;
@@ -85,6 +92,7 @@ export default class GLView extends React.Component<Props> {
               : {}),
           }}
           onSurfaceCreate={this._onSurfaceCreate}
+          onFrame={this.props.onFrame}
           msaaSamples={Platform.OS === 'ios' ? msaaSamples : undefined}
         />
       </View>
