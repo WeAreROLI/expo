@@ -22,6 +22,11 @@ type Props = {
   onFrame?: () => void,
 
   /**
+   * Optional preferred frames per second for the native display loop
+   */
+  preferredFramesPerSecond?: number,
+
+  /**
    * [iOS only] Number of samples for Apple's built-in multisampling.
    */
   msaaSamples: number,
@@ -42,6 +47,7 @@ export default class GLView extends React.Component<Props> {
     onContextCreate: PropTypes.func,
     onFrame: PropTypes.func,
     msaaSamples: PropTypes.number,
+    preferredFramesPerSecond: PropTypes.number,
     nativeRef_EXPERIMENTAL: PropTypes.func,
     ...ViewPropTypes,
   };
@@ -94,6 +100,7 @@ export default class GLView extends React.Component<Props> {
           onSurfaceCreate={this._onSurfaceCreate}
           onFrame={this.props.onFrame}
           msaaSamples={Platform.OS === 'ios' ? msaaSamples : undefined}
+          preferredFramesPerSecond={this.props.preferredFramesPerSecond}
         />
       </View>
     );
